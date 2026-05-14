@@ -19,7 +19,7 @@ const Cart = () => {
   const total = subTotal + shipping + tax;
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const API = "http://localhost:5000/api/cart";
+  const API = "https://zyntrix-backend.onrender.com/api/cart";
   const accessToken = localStorage.getItem("accessToken");
 
   const loadCart = async () => {
