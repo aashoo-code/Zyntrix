@@ -63,7 +63,7 @@ const AddProduct = () => {
       setLoading(true);
       console.log(productData.productImg);
       const res = await axios.post(
-        `http://localhost:5000/api/product/add`,
+        `${import.meta.env.VITE_URL}/api/product/add`,
         formData,
         {
           headers: {
