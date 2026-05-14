@@ -15,7 +15,7 @@ const ProductCard = ({ product, loading }) => {
   const addToCart = async (productId) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/cart/add",
+        "https://zyntrix-backend.onrender.com/api/cart/add",
         { productId },
         {
           headers: {
