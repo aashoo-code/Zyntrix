@@ -24,7 +24,7 @@ const AdminSales = () => {
     try {
       const accessToken = localStorage.getItem("accessToken");
       const res = await axios.get(
-        `${import.meta.env.VITE_URL}/api/order/sales`,
+        `${import.meta.env.VITE_API_URL}/api/order/sales`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
