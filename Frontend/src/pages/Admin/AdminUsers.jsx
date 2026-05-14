@@ -14,7 +14,7 @@ const AdminUsers = () => {
   const getAllUsers = async () => {
     const accessToken = localStorage.getItem("accessToken");
     try {
-      const res = await axios.get("http://localhost:5000/api/users/all-users", {
+      const res = await axios.get(`${import.meta.env.VITE_URL}/api/users/all-users`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
