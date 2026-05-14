@@ -11,9 +11,15 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: 'http://localhost:5173', 
-    credentials: true
-})); // Adjust the origin as needed
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://zyntrix-frontend.onrender.com",
+    ],
+    credentials: true,
+  })
+); // Adjust the origin as needed
 
 
 const PORT = process.env.PORT;
