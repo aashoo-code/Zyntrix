@@ -52,7 +52,6 @@ const SignUp = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          // data: JSON.stringify(formData)
         },
       );
       if (res.data.success) {
