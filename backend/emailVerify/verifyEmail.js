@@ -11,6 +11,9 @@ export const verifyEmail = (email, token) => {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS,
   },
+  tls: {
+    rejectUnauthorized: false,
+  },
 });
 
   const mailConfiguration = {
