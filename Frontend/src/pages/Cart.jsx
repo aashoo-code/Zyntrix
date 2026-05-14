@@ -19,7 +19,7 @@ const Cart = () => {
   const total = subTotal + shipping + tax;
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const API = `${import.meta.env.VITE_URL}/api/cart`;
+  const API = `${import.meta.env.VITE_API_URL}/api/cart`;
   const accessToken = localStorage.getItem("accessToken");
 
   const loadCart = async () => {
