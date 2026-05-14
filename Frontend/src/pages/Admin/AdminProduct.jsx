@@ -94,7 +94,7 @@ const AdminProduct = () => {
       .forEach((file) => formData.append("files", file));
     try {
       const res = await axios.put(
-        `${import.meta.env.VITE_URL}/api/product/update/${editProducts._id}`,
+        `${import.meta.env.VITE_API_URL}/api/product/update/${editProducts._id}`,
         formData,
         {
           headers: {
@@ -122,7 +122,7 @@ const AdminProduct = () => {
       const remainingProducts = products.filter((p) => p._id !== productId);
 
       const res = await axios.delete(
-        `${import.meta.env.VITE_URL}/api/product/delete/${productId}`,
+        `${import.meta.env.VITE_API_URL}/api/product/delete/${productId}`,
         {
           headers: { Authorization: `Bearer ${accessToken}` },
         },
