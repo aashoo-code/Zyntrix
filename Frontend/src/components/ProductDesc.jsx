@@ -11,7 +11,7 @@ const ProductDesc = ({ product }) => {
   const addCart = async (productId) => {
     try {
       const res = await axios.post(
-        "https://zyntrix-backend.onrender.com/api/cart/add",
+        `${import.meta.env.VITE_URL}/api/cart/add`,
         { productId },
         {
           headers: {
