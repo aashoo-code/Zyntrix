@@ -21,7 +21,7 @@ export const verifyEmail = (email, token) => {
     to: email,
     subject: "Email Verification",
     html: `<p>Hi! There, You have recently visited our website and entered your email, </br > Please click the following link to verify your email:</p>
-           <a href="http://localhost:5173/verify/${token}">Verify Email</a>`,
+           <a href="https://zyntrix-frontend.onrender.com/verify/${token}">Verify Email</a>`,
   };
 
   transporter.sendMail(mailConfiguration, (error, info) => {
