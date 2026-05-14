@@ -94,7 +94,7 @@ const AdminProduct = () => {
       .forEach((file) => formData.append("files", file));
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/product/update/${editProducts._id}`,
+        `${import.meta.env.VITE_URL}/api/product/update/${editProducts._id}`,
         formData,
         {
           headers: {
