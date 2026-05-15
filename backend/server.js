@@ -14,8 +14,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: [
+      "https://zyntrix-frontend.onrender.com" ||
       "http://localhost:5173",
-      "https://zyntrix-frontend.onrender.com",
     ],
     credentials: true,
   })
