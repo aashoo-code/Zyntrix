@@ -46,7 +46,7 @@ const SignUp = () => {
     try {
       setLoading(true);
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/users/register`,
+        `${import.meta.env.VITE_API_URL}api/users/register`,
         formData,
         {
           headers: {
@@ -55,7 +55,7 @@ const SignUp = () => {
         },
       );
       if (res.data.success) {
-        navigate("/verify");
+        navigate("verify");
         toast.success(res.data.message);
       }
       console.log("Response from server:", res.data);
