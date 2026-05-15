@@ -33,13 +33,13 @@ import { Resend } from "resend";
 import dotenv from "dotenv";
 dotenv.config();
 const resend = new Resend(process.env.RESEND_API_KEY);
+const clientUrl = process.env.CLIENT_URL;
 
 export const verifyEmail = async (email, token) => {
   try {
 
     console.log("RESEND START");
 
-     const clientUrl = process.env.CLIENT_URL;
     const response = await resend.emails.send({
       from: "Zyntrix <onboarding@resend.dev>",
       to: email,
