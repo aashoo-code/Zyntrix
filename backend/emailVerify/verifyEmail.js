@@ -1,9 +1,9 @@
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
+
 dotenv.config();
 
-export const verifyEmail = async (email, token) => {
-   export const transporter = nodemailer.createTransport({
+export const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: process.env.MAIL_USER,
@@ -11,7 +11,16 @@ export const verifyEmail = async (email, token) => {
   },
 });
 
-   try {
+transporter.verify((error, success) => {
+  if (error) {
+    console.log("SMTP ERROR:", error);
+  } else {
+    console.log("SMTP SERVER READY");
+  }
+});
+
+export const verifyEmail = async (email, token) => {
+  try {
     const mailConfiguration = {
       from: process.env.MAIL_USER,
       to: email,
