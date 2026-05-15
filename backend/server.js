@@ -13,9 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: [
-      "https://zyntrix-frontend.onrender.com",
-    ],
+  origin: process.env.CLIENT_URL,
     credentials: true,
   })
 ); // Adjust the origin as needed
