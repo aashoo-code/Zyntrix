@@ -55,12 +55,7 @@ const SignUp = () => {
           },
         },
       );
-<<<<<<< HEAD
-      sendVerify
-=======
       sendVerifyEmail(formData.email, formData.firstName, res.data.token);
-
->>>>>>> a951190ae16d4cb4935ac4aab6eedb9d1f6f417b
       if (res.data.success) {
         navigate("/verify");
         toast.success(res.data.message);
