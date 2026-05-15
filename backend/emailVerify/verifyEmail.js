@@ -3,15 +3,13 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const verifyEmail = (email, token) => {
-   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",  
-    port: 587,               
-    secure: false,           // ← 587 ke liye false rakhna
-    auth: {
-      user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASS,
-    },
-  });
+   export const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS,
+  },
+});
 
   const mailConfiguration = {
     from: process.env.MAIL_USER,
