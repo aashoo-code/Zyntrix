@@ -8,10 +8,6 @@ const VerifyEmail = () => {
   const { token } = useParams();
 
   console.log("TOKEN =>", token);
-<<<<<<< HEAD
-  
-=======
->>>>>>> a951190ae16d4cb4935ac4aab6eedb9d1f6f417b
   const [status, setStatus] = useState("Verifying...");
 
   const navigate = useNavigate();
