@@ -39,7 +39,7 @@ export const verifyEmail = async (email, token) => {
     console.log("RESEND START");
 
     const response = await resend.emails.send({
-      from: "Zyntrix",
+      from: "Zyntrix <onboarding@resend.dev>",
       to: email,
       subject: "Verify Your Email",
       html: `<p>Hi! There, You have recently visited our website and entered your email, </br > Please click the following link to verify your email:</p>
