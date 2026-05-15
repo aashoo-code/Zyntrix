@@ -55,7 +55,7 @@ const SignUp = () => {
         },
       );
       if (res.data.success) {
-        navigate("verify");
+        navigate("/verify");
         toast.success(res.data.message);
       }
       console.log("Response from server:", res.data);
