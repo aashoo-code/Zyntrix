@@ -39,18 +39,19 @@ export const verifyEmail = async (email, token) => {
 
     console.log("RESEND START");
 
+     const clientUrl = process.env.CLIENT_URL;
     const response = await resend.emails.send({
       from: "Zyntrix <onboarding@resend.dev>",
       to: email,
       subject: "Verify Your Email",
-     html: `
+
+html: `
   <div style="
     margin:0;
     padding:40px 20px;
     background: linear-gradient(to bottom right, #020617, #0f172a, #1e293b);
     font-family: Arial, sans-serif;
     color: white;
-    min-height: 100vh;
   ">
 
     <div style="
@@ -79,11 +80,11 @@ export const verifyEmail = async (email, token) => {
         margin-bottom: 30px;
       ">
         Welcome to Zyntrix ✨ <br/><br/>
-Hi! There, You have recently visited our website and entered your email, </br > Please verify your email address to Activate your Account.
+        Hi! You recently created an account. Please verify your email to activate it.
       </p>
 
       <a
-       href={`${process.env.CLIENT_URL}/verify/${token}`}
+        href="${clientUrl}/verify/${token}"
         style="
           display: inline-block;
           padding: 14px 28px;
