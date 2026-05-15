@@ -7,6 +7,7 @@ export const sendVerifyEmail = (email, name, token) => {
     {
       to_email: email,
       to_name: name,
+      title: "Verify Your Email",
       verify_link: `${import.meta.env.VITE_API_URL}/verify/${token}`,
     },
     import.meta.env.VITE_EMAILJS_PUBLIC_KEY
