@@ -30,44 +30,37 @@
 
 
 import { Resend } from "resend";
-import dotenv from "dotenv";
 
-dotenv.config();
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 export const verifyEmail = async (email, token) => {
   try {
-console.log("STEP 1");
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS,
-      },
-    });
-transporter.verify((error, success) => {
-  if (error) {
-    console.error("SMTP VERIFY ERROR =>", error);
-  } else {
-    console.log("SMTP READY =>", success);
-  }
-});
-    const mailConfiguration = {
-      from: process.env.MAIL_USER,
+
+    console.log("RESEND START");
+
+    const response = await resend.emails.send({
+      from: "onboarding@resend.dev",
       to: email,
-      subject: "Email Verification",
+      subject: "Verify Your Email",
       html: `
-        <p>Please click the link below to verify your email:</p>
+        <h2>Email Verification</h2>
+
+        <p>Click below to verify your account:</p>
 
         <a href="https://zyntrix-frontend.onrender.com/verify/${token}">
           Verify Email
         </a>
       `,
-    };
-console.log("STEP 2");
-    const info = await transporter.sendMail(mailConfiguration);
-console.log("STEP 3");
-    console.log("Email sent:", info.response);
+    });
+
+    console.log("EMAIL SENT =>", response);
+
+    return response;
 
   } catch (error) {
-    console.log("Error sending email:", error);
+
+    console.error("RESEND ERROR =>", error);
+
+    throw error;
   }
 };
