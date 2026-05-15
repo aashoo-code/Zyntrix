@@ -17,6 +17,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 import { TbLoader3 } from "react-icons/tb";
+import sendVerifyEmail from "@/utils/sendVerifyEmail.js";
 
 const SignUp = () => {
   const [showPass, setShowPass] = useState(false);
@@ -54,6 +55,7 @@ const SignUp = () => {
           },
         },
       );
+      sendVerifyEmail(email, name, response.data.token);
       if (res.data.success) {
         navigate("/verify");
         toast.success(res.data.message);
