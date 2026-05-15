@@ -83,7 +83,7 @@ Hi! There, You have recently visited our website and entered your email, </br > 
       </p>
 
       <a
-        href=`${process.env.CLIENT_URL}/verify/${token}`
+       href={`${process.env.CLIENT_URL}/verify/${token}`}
         style="
           display: inline-block;
           padding: 14px 28px;
