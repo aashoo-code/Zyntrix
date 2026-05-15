@@ -46,7 +46,7 @@ const SignUp = () => {
     try {
       setLoading(true);
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}api/users/register`,
+        `${import.meta.env.VITE_API_URL}/api/users/register`,
         formData,
         {
           headers: {
@@ -272,7 +272,8 @@ const SignUp = () => {
         rounded-xl
         transition-all duration-300
         hover:scale-[0.98]
-        active:scale-95"
+        active:scale-95
+        cursor-pointer"
       >
         {loading ? (
           <>
