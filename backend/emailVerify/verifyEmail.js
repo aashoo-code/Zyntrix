@@ -39,18 +39,11 @@ export const verifyEmail = async (email, token) => {
     console.log("RESEND START");
 
     const response = await resend.emails.send({
-      from: "onboarding@resend.dev",
+      from: "Zyntrix",
       to: email,
       subject: "Verify Your Email",
-      html: `
-        <h2>Email Verification</h2>
-
-        <p>Click below to verify your account:</p>
-
-        <a href="https://zyntrix-frontend.onrender.com/verify/${token}">
-          Verify Email
-        </a>
-      `,
+      html: `<p>Hi! There, You have recently visited our website and entered your email, </br > Please click the following link to verify your email:</p>
+//            <a href="https://zyntrix-frontend.onrender.com//verify/${token}">Verify Email</a>`,
     });
 
     console.log("EMAIL SENT =>", response);
