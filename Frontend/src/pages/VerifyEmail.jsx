@@ -3,7 +3,11 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
 const VerifyEmail = () => {
-  const token = useParams().token;
+  console.log("VERIFY PAGE OPENED");
+
+  const { token } = useParams();
+
+  console.log("TOKEN =>", token);
   const [status, setStatus] = useState("Verifying...");
 
   const navigate = useNavigate();
