@@ -55,7 +55,8 @@ const SignUp = () => {
           },
         },
       );
-      sendVerifyEmail(email, name, response.data.token);
+      sendVerifyEmail(formData.email, formData.firstName, res.data.token);
+
       if (res.data.success) {
         navigate("/verify");
         toast.success(res.data.message);
