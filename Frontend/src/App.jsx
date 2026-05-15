@@ -4,7 +4,6 @@ import Home from "./pages/Home";
 import Login from "./pages/login";
 import SignUp from "./pages/signUp";
 import Verify from "./pages/verify";
-import VerifyEmail from "./pages/VerifyEmail";
 import Profile from "./pages/Profile";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
@@ -22,6 +21,7 @@ import SinglePages from "./pages/SinglePages";
 import Address from "./pages/Address";
 import OrderSuccess from "./pages/OrderSuccess";
 import ScrollToTop from "./components/ScrollToTop";
+import VerifyEmail from "./pages/VerifyEmail";
 const App = () => {
   return (
     <div>

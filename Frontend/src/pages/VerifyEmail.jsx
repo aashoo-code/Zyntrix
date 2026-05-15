@@ -3,12 +3,18 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
 const VerifyEmail = () => {
-  const token = useParams().token;
+  console.log("VERIFY PAGE OPENED");
+
+  const { token } = useParams();
+
+  console.log("TOKEN =>", token);
+  
   const [status, setStatus] = useState("Verifying...");
 
   const navigate = useNavigate();
 
   const verifyEmail = async () => {
+    
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/users/verify`,

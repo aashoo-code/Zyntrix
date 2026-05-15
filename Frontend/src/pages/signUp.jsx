@@ -54,6 +54,7 @@ const SignUp = () => {
           },
         },
       );
+      sendVerify
       if (res.data.success) {
         navigate("/verify");
         toast.success(res.data.message);
