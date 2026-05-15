@@ -8,9 +8,184 @@ import { verifyEmail } from "../emailVerify/verifyEmail.js";
 import { sendOtpEmail } from "../emailVerify/sendOtpMail.js";
 import cloudinary from "../utils/Cloudinary.js";
 
-export const register = async (req, res) => {
-};
+// export const register = async (req, res) => {
+//   try {
+//     console.log("REGISTER START");
 
+//     const { lastName, firstName, email, password, confirmPassword } = req.body;
+
+//     console.log("REQ BODY =>", req.body);
+
+//     if (!firstName || !lastName || !email || !password || !confirmPassword) {
+//       return res
+//         .status(400)
+//         .json({ success: false, message: "All fields are required" });
+//     }
+
+//     if (password !== confirmPassword) {
+//       return res
+//         .status(400)
+//         .json({ success: false, message: "Passwords do not match" });
+//     }
+
+//     console.log("CHECKING USER");
+
+//     const user = await User.findOne({ email });
+
+//     if (user) {
+//       return res
+//         .status(400)
+//         .json({ success: false, message: "User already exists" });
+//     }
+
+//     console.log("HASHING PASSWORD");
+
+//     const hashedPassword = await bcrypt.hash(password, 10);
+
+//     console.log("CREATING USER");
+
+//     const newUser = await User.create({
+//       firstName,
+//       lastName,
+//       email,
+//       password: hashedPassword,
+//       confirmPassword: hashedPassword,
+//     });
+
+//     console.log("USER CREATED =>", newUser.email);
+
+//     const token = jwt.sign(
+//       { id: newUser._id },
+//       process.env.JWT_SECRET,
+//       {
+//         expiresIn: "2d",
+//       }
+//     );
+
+//     console.log("TOKEN GENERATED =>", token);
+
+//     console.log("CALLING VERIFY EMAIL");
+
+//     await verifyEmail(email, token);
+
+//     console.log("VERIFY EMAIL FINISHED");
+
+//     newUser.token = token;
+
+//     await newUser.save();
+
+//     console.log("USER SAVED");
+
+//     return res.status(201).json({
+//       success: true,
+//       message: "User registered successfully",
+//       user: newUser,
+//     });
+
+//   } catch (error) {
+//     console.error("REGISTER ERROR =>", error);
+
+//     return res.status(500).json({
+//       success: false,
+//       message: "Server error",
+//       error: error.message,
+//     });
+//   }
+// };
+export const register = async (req, res) => {
+  try {
+    console.log("REGISTER START");
+
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+    } = req.body;
+
+    console.log("REQ BODY =>", req.body);
+
+    // Validation
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !password ||
+      !confirmPassword
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required",
+      });
+    }
+
+    // Password match check
+    if (password !== confirmPassword) {
+      return res.status(400).json({
+        success: false,
+        message: "Passwords do not match",
+      });
+    }
+
+    console.log("CHECKING USER");
+
+    // Existing user check
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: "User already exists",
+      });
+    }
+
+    console.log("HASHING PASSWORD");
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    console.log("CREATING USER");
+
+    // Create user
+    const newUser = await User.create({
+      firstName,
+      lastName,
+      email,
+      password: hashedPassword,
+    });
+
+    console.log("USER CREATED =>", newUser.email);
+
+    // Generate token
+    const token = jwt.sign(
+      { id: newUser._id },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "2d",
+      }
+    );
+
+    console.log("TOKEN GENERATED =>", token);
+
+    // Response
+    return res.status(201).json({
+      success: true,
+      message: "User registered successfully",
+      token,
+      user: newUser,
+    });
+
+  } catch (error) {
+    console.error("REGISTER ERROR =>", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Server Error",
+      error: error.message,
+    });
+  }
+};
 
 export const verify = async (req, res) => {
   try {
