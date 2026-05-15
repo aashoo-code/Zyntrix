@@ -84,7 +84,7 @@ html: `
       </p>
 
       <a
-        href="${clientUrl}/product"
+       href="${clientUrl}/verify/${token}"
         style="
           display: inline-block;
           padding: 14px 28px;
