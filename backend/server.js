@@ -6,10 +6,12 @@ import productRouter from './routes/productRoute.js';
 import cartRouter from './routes/cartRoute.js';
 import orderRouter from './routes/orderRoute.js';
 import cors from 'cors';
+import path from "path";
 
 dotenv.config();
 const app = express();
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "dist")));
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
@@ -29,6 +31,10 @@ app.use('/api/order', orderRouter);
 
 app.get('/', (req, res) => {
     res.send('Server is running...');
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
 const startServer = async () => {
