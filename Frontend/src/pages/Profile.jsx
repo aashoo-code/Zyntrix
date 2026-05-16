@@ -1,11 +1,4 @@
 import Navbar from "@/components/Navbar";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -18,9 +11,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TbLoader3 } from "react-icons/tb";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import axios from "axios";
@@ -29,21 +22,43 @@ import MyOrder from "./MyOrder";
 
 const Profile = () => {
   const [loading, setLoading] = useState(false);
+  const [updateUser, setUpdateUser] = useState({});
   const { user } = useSelector((store) => store.user);
   const params = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+const activeTab = searchParams.get("tab") || "profile";
+  
   const userId = params.userId;
-  const [updateUser, setUpdateUser] = useState({
-    firstName: user?.firstName,
-    lastName: user?.lastName,
-    email: user?.email,
-    phone: user?.phone,
-    address: user?.address,
-    city: user?.city,
-    state: user?.state,
-    pincode: user?.pincode,
-    profilePicture: user?.profilePicture,
-    role: user?.role,
-  });
+useEffect(() => {
+  if (user) {
+    setUpdateUser({
+      firstName: user.firstName || "",
+      lastName: user.lastName || "",
+      email: user.email || "",
+      phone: user.phone || "",
+      address: user.address || "",
+      city: user.city || "",
+      state: user.state || "",
+      pincode: user.pincode || "",
+      profilePicture: user.profilePicture || "",
+      role: user.role || "",
+    });
+  }
+}, [user]);
+
+  
+  // const [updateUser, setUpdateUser] = useState({
+  //   firstName: user?.firstName,
+  //   lastName: user?.lastName,
+  //   email: user?.email,
+  //   phone: user?.phone,
+  //   address: user?.address,
+  //   city: user?.city,
+  //   state: user?.state,
+  //   pincode: user?.pincode,
+  //   profilePicture: user?.profilePicture,
+  //   role: user?.role,
+  // });
 
   const [file, setFile] = useState(null);
   const dispatch = useDispatch();
@@ -63,7 +78,6 @@ const Profile = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    console.log(updateUser);
     console.log("PHONE:", updateUser.phone);
     setLoading(true);
     const accessToken = localStorage.getItem("accessToken");
@@ -111,7 +125,11 @@ const Profile = () => {
     <div className="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#111827] to-[#1e293b]">
       <Navbar />
       <div className="pt-20 pb-10 w-full">
-        <Tabs defaultValue="profile" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 flex flex-col lg:flex-row gap-7">
+       <Tabs
+  value={activeTab}
+  onValueChange={(value) => setSearchParams({ tab: value })}
+  className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 flex flex-col lg:flex-row gap-7"
+>
           {" "}
           <TabsList className="bg-slate-900 border border-slate-700 p-1 ">
             <TabsTrigger
@@ -166,7 +184,7 @@ const Profile = () => {
                         <input
                           type="text"
                           name="firstName"
-                          value={updateUser.firstName}
+                          value={updateUser?.firstName || ""}
                           onChange={handleChange}
                           placeholder="Enter Your First Name"
                           className="w-full bg-[#0f172a] border border-slate-700 rounded-xl px-4 py-3 mt-1 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
@@ -179,7 +197,7 @@ const Profile = () => {
                         <input
                           type="text"
                           name="lastName"
-                          value={updateUser.lastName}
+                          value={updateUser?.lastName || ""}
                           onChange={handleChange}
                           placeholder="Enter Your Last Name"
                           className="w-full bg-[#0f172a] border border-slate-700 rounded-xl px-4 py-3 mt-1 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
@@ -193,7 +211,7 @@ const Profile = () => {
                       <input
                         type="email"
                         name="email"
-                        value={updateUser.email}
+                        value={updateUser?.email || ""}
                         onChange={handleChange}
                         disabled
                         className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 mt-1 text-slate-400 cursor-not-allowed"
@@ -208,7 +226,7 @@ const Profile = () => {
                         pattern="[0-9]{10}"
                         minLength={10}
                         maxLength={10}
-                        value={updateUser.phone}
+                        value={updateUser?.phone || ""}
                         onChange={handleChange}
                         placeholder="Enter 10 digit no."
                         name="phone"
@@ -223,7 +241,7 @@ const Profile = () => {
                         type="text"
                         placeholder="Enter Your Full Address"
                         name="address"
-                        value={updateUser.address}
+                        value={updateUser?.address || ""}
                         onChange={handleChange}
                         className="w-full bg-[#0f172a] border border-slate-700 rounded-xl px-4 py-3 mt-1 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
                       />
@@ -235,7 +253,7 @@ const Profile = () => {
                       <input
                         type="text"
                         placeholder="Enter City"
-                        value={updateUser.city}
+                        value={updateUser?.city || ""}
                         onChange={handleChange}
                         name="city"
                         className="w-full bg-[#0f172a] border border-slate-700 rounded-xl px-4 py-3 mt-1 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
@@ -247,7 +265,7 @@ const Profile = () => {
                       </Label>
                       <Select
                         name="state"
-                        value={updateUser.state}
+                        value={updateUser?.state || ""}
                         className="w-full border rounded-lg px-3 py-2 mt-1"
                         onValueChange={(value) =>
                           setUpdateUser((prev) => ({ ...prev, state: value }))
@@ -348,7 +366,7 @@ const Profile = () => {
                         pattern="[0-9]{6}"
                         minLength={6}
                         maxLength={6}
-                        value={updateUser.pincode}
+                        value={updateUser?.pincode || ""}
                         onChange={handleChange}
                         placeholder="Enter your Zip Code"
                         name="pincode"
