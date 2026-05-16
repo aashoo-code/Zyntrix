@@ -1,9 +1,10 @@
 import React from "react";
 import { FiCheckCircle } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 const OrderSuccess = () => {
   const navigate = useNavigate();
+  const { user } = useSelector((store) => store.user);
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 px-6 overflow-hidden relative">
   
