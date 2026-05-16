@@ -22,7 +22,6 @@ import Address from "./pages/Address";
 import OrderSuccess from "./pages/OrderSuccess";
 import ScrollToTop from "./components/ScrollToTop";
 import VerifyEmail from "./pages/VerifyEmail";
-import MyOrder from "./pages/MyOrder";
 
 const App = () => {
   return (
@@ -38,14 +37,6 @@ const App = () => {
           element={
             <ProtectedRoute>
               <Cart />
-            </ProtectedRoute>
-          }
-        />
-<Route
-          path="/order"
-          element={
-            <ProtectedRoute>
-              <MyOrder />
             </ProtectedRoute>
           }
         />
