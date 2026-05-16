@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { FaAnglesLeft } from "react-icons/fa6";
 import { Separator } from "@/components/ui/separator";
 import {
   addAddress,
@@ -91,11 +92,11 @@ const Address = () => {
               },
             );
             if (verifyRes.data.success) {
-              toast.success("✅ Payment Successful !!!");
+              toast.success("Payment Successful !!!");
               dispatch(setCart({ items: [], totalPrice: 0 }));
               navigate("/order-success");
             } else {
-              toast.error("❌ Payment Verification Failed !");
+              toast.error("Payment Verification Failed !");
             }
           } catch (error) {
             toast.error("Payment Failed ! Try again later");
