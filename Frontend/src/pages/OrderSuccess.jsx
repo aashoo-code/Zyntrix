@@ -35,14 +35,14 @@ const OrderSuccess = () => {
       
       <button
         onClick={() => navigate("/product")}
-        className="w-full py-3 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold hover:scale-[1.02] hover:shadow-lg hover:shadow-pink-500/30 transition-all duration-300"
+        className="w-full py-3 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold hover:scale-[1.02] hover:shadow-lg hover:shadow-pink-500/30 transition-all duration-300 cursor-pointer"
       >
         Continue Shopping
       </button>
 
       <button
         onClick={() => navigate("/orders")}
-        className="w-full py-3 rounded-xl border border-slate-600 bg-slate-800/50 text-slate-200 font-semibold hover:bg-slate-700/60 hover:scale-[1.02] transition-all duration-300"
+        className="w-full py-3 rounded-xl border border-slate-600 bg-slate-800/50 text-slate-200 font-semibold hover:bg-slate-700/60 hover:scale-[1.02] transition-all duration-300 cursor-pointer"
       >
         View My Orders
       </button>
