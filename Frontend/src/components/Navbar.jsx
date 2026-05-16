@@ -98,14 +98,14 @@ const Navbar = () => {
 
       {user && (
         <Link
-          className="font-medium text-slate-300 hover:text-cyan-400 transition"
-          to={`/profile/${user._id}`}
-        >
-          Hello,{" "}
-          <span className="font-bold text-cyan-400">
-            {user.firstName}!
-          </span>
-        </Link>
+  className="font-medium text-slate-300 hover:text-cyan-400 transition"
+  to={`/profile/${user._id}?tab=profile`}
+>
+  Hello,{" "}
+  <span className="font-bold text-cyan-400">
+    {user.firstName}!
+  </span>
+</Link>
       )}
 
       {admin && (
@@ -189,14 +189,15 @@ const Navbar = () => {
 
       {user && (
         <Link
-          to={`/profile/${user._id}`}
-          onClick={() => setMenuOpen(false)}
-          className="text-slate-300 hover:text-cyan-400 transition"
-        >
-          Hello, <span className="text-cyan-400 font-semibold">
-            {user.firstName}!
-          </span>
-        </Link>
+  to={`/profile/${user._id}?tab=profile`}
+  onClick={() => setMenuOpen(false)}
+  className="text-slate-300 hover:text-cyan-400 transition"
+>
+  Hello,{" "}
+  <span className="text-cyan-400 font-semibold">
+    {user.firstName}!
+  </span>
+</Link>
       )}
 
       {admin && (
