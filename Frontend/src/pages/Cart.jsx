@@ -108,12 +108,12 @@ const Cart = () => {
                   {/* Image + Name + Price */}
                   <div className="flex items-center gap-3 w-full sm:w-[350px]">
                     <img
+                      onClick={() =>navigate(`/product/${product?.productId?._id}`)}
                       src={product?.productId?.productImg?.[0]?.url || "/ZyntrixLogo.png"}
                       alt="cart"
-                      className="w-20 h-20 sm:w-24 sm:h-24 object-contain rounded-2xl flex-shrink-0"
-                    />
+                      className="w-20 h-20 sm:w-24 sm:h-24 hover:underline cursor-pointer object-contain rounded-2xl flex-shrink-0"/>
                     <div className="flex-1 sm:w-[280px] px-2 sm:px-5">
-                      <h2 className="text-white font-semibold line-clamp-2 text-sm sm:text-base">
+                      <h2 className="text-white font-semibold hover:underline cursor-pointer line-clamp-2 text-sm sm:text-base" onClick={() =>navigate(`/product/${product?.productId?._id}`)}>
                         {product?.productId?.productName}
                       </h2>
                       <p className="text-cyan-400 font-medium text-sm sm:text-base">
@@ -132,14 +132,14 @@ const Cart = () => {
                     {/* Qty Buttons */}
                     <div className="flex items-center gap-3">
                       <Button
-                        className="h-8 w-8 bg-slate-800 border-2 border-cyan-400 text-cyan-300 rounded-lg hover:bg-cyan-500 hover:text-slate-900 transition-all"
+                        className="h-8 w-8 bg-slate-800 border-2 border-cyan-400 text-cyan-300 rounded-lg hover:bg-cyan-500 hover:text-slate-900 cursor-pointer transition-all"
                         onClick={() => handleUpdateQuantity(product?.productId?._id, "decrease")}
                       >
                         -
                       </Button>
                       <span className="text-slate-200">{product?.quantity || 1}</span>
                       <Button
-                        className="h-8 w-8 bg-slate-800 border-2 border-cyan-400 text-cyan-300 rounded-lg hover:bg-cyan-500 hover:text-slate-900 transition-all"
+                        className="h-8 w-8 bg-slate-800 border-2 border-cyan-400 text-cyan-300 rounded-lg hover:bg-cyan-500 cursor-pointer hover:text-slate-900 transition-all"
                         onClick={() => handleUpdateQuantity(product?.productId?._id, "increase")}
                       >
                         +
@@ -210,19 +210,19 @@ const Cart = () => {
                     placeholder="ENTER PROMO CODE"
                     className="bg-slate-900 border-2 border-cyan-400 py-7 text-white text-lg uppercase placeholder:text-slate-500 placeholder:text-lg rounded-xl"
                   />
-                  <Button className="bg-cyan-500 hover:bg-cyan-400 px-6 py-7 text-slate-900 font-semibold rounded-xl">
+                  <Button className="bg-cyan-500 hover:bg-cyan-400 px-6 py-7 text-slate-900 cursor-pointer font-semibold rounded-xl">
                     Apply
                   </Button>
                 </div>
 
                 <Button
                   onClick={() => navigate("/address")}
-                  className="w-full bg-cyan-500 py-4 hover:bg-cyan-400 text-slate-900 font-bold rounded-xl"
+                  className="w-full bg-cyan-500 py-4 hover:bg-cyan-400 cursor-pointer text-slate-900 font-bold rounded-xl"
                 >
-                  Proceed to Checkout
+                  Place Order
                 </Button>
 
-                <Button className="w-full bg-slate-800 py-4 border-2 border-cyan-400 text-cyan-300 hover:bg-slate-700 rounded-xl">
+                <Button className="w-full bg-slate-800 py-4 border-2 border-cyan-400 cursor-pointer text-cyan-300 hover:bg-slate-700 rounded-xl">
                   <Link to="/product">Continue Shopping</Link>
                 </Button>
 
