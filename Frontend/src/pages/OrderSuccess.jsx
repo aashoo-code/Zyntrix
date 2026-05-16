@@ -41,7 +41,7 @@ const OrderSuccess = () => {
       </button>
 
       <button
-        onClick={() => navigate("/order")}
+        onClick={() => navigate(`/profile/${user._id}?tab=order`)}
         className="w-full py-3 rounded-xl border border-slate-600 bg-slate-800/50 text-slate-200 font-semibold hover:bg-slate-700/60 hover:scale-[1.02] transition-all duration-300 cursor-pointer"
       >
         View My Orders
